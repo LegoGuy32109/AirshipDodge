@@ -17,7 +17,7 @@ extents = Vector3( 6.21633, 0.086799, 5.84959 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010829, 0.0176015, 0.0428755 )
 
 [node name="Player" type="KinematicBody" parent="."]
-transform = Transform( -2.64495e-08, 0, -0.605093, 0, 0.605093, 0, 0.605093, 0, -2.64495e-08, 0, 1.04259, 0 )
+transform = Transform( -2.64495e-08, 0, -0.605093, 0, 0.605093, 0, 0.605093, 0, -2.64495e-08, 0.00230408, 1.04259, 0.0166101 )
 script = ExtResource( 1 )
 rot_speed = 3.589
 
@@ -34,11 +34,13 @@ mesh = SubResource( 6 )
 material/0 = null
 
 [node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
-transform = Transform( -4.37114e-08, 0.0929614, -0.99567, 0, 0.99567, 0.0929614, 1, 4.06347e-09, -4.35221e-08, -2.76906, 2.04621, 8.56817e-08 )
+transform = Transform( 0.000232032, 0.295082, -0.955472, 0.000218769, 0.955472, 0.295082, 1, -0.000277496, 0.000157145, -2.84189, 1.8104, 6.85751e-05 )
 target = NodePath("../Player/Cam Pos")
+speed = 4.0
 enabled = true
 
 [node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 7.41185, 0, 0, 0, 1, 0, 0, 0, 7.41185, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 shape = SubResource( 4 )
@@ -49,12 +51,12 @@ mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Floor2" type="StaticBody" parent="."]
-transform = Transform( 0.171769, 0.703938, -0.0749751, -0.202937, 0.679376, 0.0169129, 0.081842, 0.207169, 0.199295, -3.44296, 1.25792, -1.13353 )
+transform = Transform( -0.274175, 0.0919519, -0.0303247, -0.00173214, 0.819034, 0.122546, 0.0470216, 0.566327, -0.172304, 4.81465, 0.856678, -3.46099 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor2"]
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor2"]
-transform = Transform( 6.19771, 0, 0, 0, 0.0797576, 0, 0, 0, 5.75248, 0, 0, 0 )
+transform = Transform( 6.19771, -1.67638e-08, 1.19209e-07, -4.47035e-08, 0.0797576, 1.49012e-08, 0, 7.45058e-09, 5.75248, 0, 0, 0 )
 mesh = SubResource( 5 )
 material/0 = null
