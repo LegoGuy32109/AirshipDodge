@@ -2,7 +2,7 @@ extends KinematicBody
 
 export var gravity = Vector3.DOWN * 20
 
-export var speed = 8
+export var speed = 4
 var og_speed = speed
 
 export var max_slide_speed = 30
@@ -19,54 +19,58 @@ var velocity = Vector3.ZERO
 var sliding = false
 var jumping = false
 
+
+var mouse_sens = 0.3
+var camera_anglev=0
+
+func _init():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
+
+
+func _input(event):         
+	if event is InputEventMouseMotion:
+		self.rotate_y(deg2rad(-event.relative.x*mouse_sens))
+		
+			
 func _physics_process(delta):
 	velocity += gravity * delta
 	get_input(delta) # for user input, WASD controls
 	velocity = move_and_slide(velocity, Vector3.UP) # second parameter classifies what ground is
 	
 	# having the controls for sliding ouside of the input function stops affeting jump vector
-	if Input.is_action_pressed("jump") and is_on_floor():
-		if not sliding:
-			speed+=slide_speed
-			sliding = true
-		speed -= 0.5
-		speed = max(speed, og_speed)
-
+	
+""" Rotation controls for when sliding
+if Input.is_action_pressed("right"):
+		rotate_y(-rot_speed * delta)
+	if Input.is_action_pressed("left"):
+		rotate_y(rot_speed * delta)
+"""
 		
 func get_input(delta):
-	var vy = velocity.y
-	velocity = Vector3.ZERO
-
+	if Input.is_action_just_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
 	if Input.is_action_pressed("forward"):
 		velocity += -transform.basis.z * speed
 	if Input.is_action_pressed("backward"):
 		velocity += transform.basis.z * speed
 	if Input.is_action_pressed("right"):
-		rotate_y(-rot_speed * delta)
+		velocity += transform.basis.x * speed
 	if Input.is_action_pressed("left"):
-		rotate_y(rot_speed * delta)
+		velocity += -transform.basis.x * speed
 			
+	
 	# slide effect
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		jumping = true
-		init_slide_speed = max_slide_speed/10
-		jump_speed = init_jump_speed
-		
-	if jumping:
-		vy += jump_speed
-		jump_speed -= 1
-		jump_speed = max(jump_speed, 0)
-		
-	if Input.is_action_pressed("jump") and not is_on_floor():
-		init_slide_speed += 1
-		init_slide_speed = min(init_slide_speed, max_slide_speed)
-		
-	if Input.is_action_just_released("jump"):
-		speed = og_speed
-		slide_speed = init_slide_speed
-		sliding = false
-		jumping = false	
+	if Input.is_action_just_pressed("jump"):
+		velocity += Vector3.UP * jump_speed
+	
+	if abs(velocity.x) > 0:
+		velocity.x -= velocity.x/10
 
-	velocity.y = vy
+		
+	if abs(velocity.z) > 0:
+		velocity.z -= velocity.z/10
+
+		 
 	print(velocity)
 

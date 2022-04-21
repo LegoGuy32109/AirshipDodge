@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 
@@ -11,7 +11,14 @@ height = 1.15218
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 6.21633, 0.086799, 5.84959 )
 
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.592157, 0.12549, 0.12549, 1 )
+
 [sub_resource type="CubeMesh" id=5]
+material = SubResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.411765, 0.839216, 0.658824, 1 )
 
 [node name="World" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010829, 0.0176015, 0.0428755 )
@@ -25,19 +32,13 @@ rot_speed = 3.589
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 2 )
 
-[node name="Cam Pos" type="Position3D" parent="Player"]
-transform = Transform( 1, 0, -5.68434e-14, 0, 1, 0, 7.10543e-15, 0, 1, 0, 1.68, 4.462 )
-
 [node name="MeshInstance" type="MeshInstance" parent="Player"]
 transform = Transform( -3.67131e-08, 1.00201, -4.37992e-08, 0, -4.37992e-08, -1.00201, -0.839897, -4.37992e-08, 1.91452e-15, 0, 0, 0 )
 mesh = SubResource( 6 )
 material/0 = null
 
-[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
-transform = Transform( 0.000232032, 0.295082, -0.955472, 0.000218769, 0.955472, 0.295082, 1, -0.000277496, 0.000157145, -2.84189, 1.8104, 6.85751e-05 )
-target = NodePath("../Player/Cam Pos")
-speed = 4.0
-enabled = true
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1.65264, -2.13163e-14, 9.23706e-14, 0, 1.60741, 0.384005, -9.9476e-14, -0.384005, 1.60741, -2.23517e-08, 1.91223, 5.15797 )
 
 [node name="Floor" type="StaticBody" parent="."]
 transform = Transform( 7.41185, 0, 0, 0, 1, 0, 0, 0, 7.41185, 0, 0, 0 )
@@ -57,6 +58,17 @@ transform = Transform( -0.274175, 0.0919519, -0.0303247, -0.00173214, 0.819034, 
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor2"]
-transform = Transform( 6.19771, -1.67638e-08, 1.19209e-07, -4.47035e-08, 0.0797576, 1.49012e-08, 0, 7.45058e-09, 5.75248, 0, 0, 0 )
+transform = Transform( 6.19771, -1.86265e-08, -5.96046e-08, -2.98023e-08, 0.0797576, 0, 1.19209e-07, 1.49012e-08, 5.75248, -0.0513268, 0.0159303, 0.123346 )
 mesh = SubResource( 5 )
-material/0 = null
+material/0 = SubResource( 8 )
+
+[node name="Floor3" type="StaticBody" parent="."]
+transform = Transform( -0.274175, -0.116702, -0.0261528, -0.00173214, 0.748398, -0.141665, 0.0470216, -0.6529, -0.157711, -14.1968, 0.93701, -0.400109 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor3"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor3"]
+transform = Transform( 6.19771, -1.86265e-08, -5.96046e-08, -2.98023e-08, 0.0797576, 0, 1.19209e-07, 1.49012e-08, 5.75248, -0.0513268, 0.0159303, 0.123346 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 8 )
