@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 
@@ -9,7 +9,7 @@ height = 1.15218
 [sub_resource type="CapsuleMesh" id=6]
 
 [sub_resource type="BoxShape" id=4]
-extents = Vector3( 6.21633, 0.086799, 5.84959 )
+extents = Vector3( 6.41264, 0.099379, 5.84959 )
 
 [sub_resource type="SpatialMaterial" id=7]
 albedo_color = Color( 0.592157, 0.12549, 0.12549, 1 )
@@ -19,6 +19,9 @@ material = SubResource( 7 )
 
 [sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0.411765, 0.839216, 0.658824, 1 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 6.23463, 0.097279, 5.84959 )
 
 [node name="World" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010829, 0.0176015, 0.0428755 )
@@ -44,6 +47,7 @@ transform = Transform( 1.65264, -2.13163e-14, 9.23706e-14, 0, 1.60741, 0.384005,
 transform = Transform( 7.41185, 0, 0, 0, 1, 0, 0, 0, 7.41185, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00286211, 0.0482435, -0.00696124 )
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor"]
@@ -69,6 +73,18 @@ transform = Transform( -0.274175, -0.116702, -0.0261528, -0.00173214, 0.748398, 
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor3"]
+transform = Transform( 6.19771, -1.86265e-08, -5.96046e-08, -2.98023e-08, 0.0797576, 0, 1.19209e-07, 1.49012e-08, 5.75248, -0.0513268, 0.0159303, 0.123346 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 8 )
+
+[node name="Tower" type="StaticBody" parent="."]
+transform = Transform( -0.274779, 2.34596, 0.0352402, 0.00544951, 0.664579, 2.81166, 0.0430399, 14.8932, -0.131015, -4.23608, 7.45906, -2.26014 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Tower"]
+transform = Transform( 1, 0, 2.23517e-08, -2.32831e-10, 1, -1.86265e-09, 5.82077e-11, 0, 1, -0.184607, -1.49012e-08, -2.38419e-07 )
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Tower"]
 transform = Transform( 6.19771, -1.86265e-08, -5.96046e-08, -2.98023e-08, 0.0797576, 0, 1.19209e-07, 1.49012e-08, 5.75248, -0.0513268, 0.0159303, 0.123346 )
 mesh = SubResource( 5 )
 material/0 = SubResource( 8 )

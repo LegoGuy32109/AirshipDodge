@@ -9,7 +9,7 @@ export var max_slide_speed = 30
 var init_slide_speed = max_slide_speed/10
 var slide_speed = init_slide_speed
 
-export var init_jump_speed = 4
+export var init_jump_speed = 11
 var jump_speed = init_jump_speed
 
 export var rot_speed = 0.85
@@ -49,7 +49,8 @@ if Input.is_action_pressed("right"):
 func get_input(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
+	if Input.is_action_just_pressed("leftMouseButton"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if Input.is_action_pressed("forward"):
 		velocity += -transform.basis.z * speed
 	if Input.is_action_pressed("backward"):
@@ -61,16 +62,20 @@ func get_input(delta):
 			
 	
 	# slide effect
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity += Vector3.UP * jump_speed
 	
+	# movement dampening
 	if abs(velocity.x) > 0:
 		velocity.x -= velocity.x/10
-
-		
+		if abs(velocity.x) < .001:
+			velocity.x = 0
 	if abs(velocity.z) > 0:
 		velocity.z -= velocity.z/10
+		if abs(velocity.z) < .01:
+			velocity.z = 0
 
-		 
+	
+	
 	print(velocity)
 
