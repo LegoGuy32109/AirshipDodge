@@ -3,16 +3,15 @@ extends KinematicBody
 export var gravity = Vector3.DOWN * 50
 
 export var speed = 3
-var og_speed = speed
+export var max_speed = 10
 
-export var max_slide_speed = 20
-var init_slide_speed = max_slide_speed/10
-var slide_speed = init_slide_speed
+
+export var slide_speed = 10
 
 export var init_jump_speed = 16
 var jump_speed = init_jump_speed
 
-export var rot_speed = 0.85
+export var rot_speed = 0.15
 
 var velocity = Vector3.ZERO
 
@@ -46,7 +45,10 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.name == "KillPlane":
-			transform = Transform.IDENTITY
+			velocity = Vector3.ZERO # reset values before spawn
+			sliding_percent = 0.0
+			self.translation = get_parent().get_node("Respawn").translation
+			
 
 """ Rotation controls for when sliding
 if Input.is_action_pressed("right"):
@@ -68,9 +70,15 @@ func get_input(delta):
 	if Input.is_action_pressed("backward"):
 		velocity += transform.basis.z * speed
 	if Input.is_action_pressed("right"):
-		velocity += transform.basis.x * speed
+		if sliding:
+			rotate_y(-rot_speed * delta)
+		else:
+			velocity += transform.basis.x * speed
 	if Input.is_action_pressed("left"):
-		velocity += -transform.basis.x * speed
+		if sliding:
+			rotate_y(rot_speed * delta)
+		else:
+			velocity += -transform.basis.x * speed
 	
 	# jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -89,11 +97,14 @@ func get_input(delta):
 		
 	if Input.is_action_pressed("jump") and is_on_floor() and sliding_percent > 0.1:
 		sliding = true
-		
+
+	if not is_on_floor():
+		sliding = false
+	
 	if sliding:
 		if sliding_percent == 0:
 			sliding = false
-		velocity += -transform.basis.z * sliding_percent * max_slide_speed
+		velocity += -transform.basis.z * sliding_percent * slide_speed
 		sliding_percent -= delta 
 		sliding_percent = max(0, sliding_percent)
 	
