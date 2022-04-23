@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 
@@ -23,8 +23,11 @@ albedo_color = Color( 0.411765, 0.839216, 0.658824, 1 )
 [sub_resource type="BoxShape" id=9]
 extents = Vector3( 6.23463, 0.097279, 5.84959 )
 
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 0.21152, 0.162008, 0.19546 )
+
 [node name="World" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010829, 0.0176015, 0.0428755 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010829, -4.07996, 0.0428755 )
 
 [node name="Player" type="KinematicBody" parent="."]
 transform = Transform( -2.64495e-08, 0, -0.605093, 0, 0.605093, 0, 0.605093, 0, -2.64495e-08, 0.00230408, 1.04259, 0.0166101 )
@@ -88,3 +91,47 @@ shape = SubResource( 9 )
 transform = Transform( 6.19771, -1.86265e-08, -5.96046e-08, -2.98023e-08, 0.0797576, 0, 1.19209e-07, 1.49012e-08, 5.75248, -0.0513268, 0.0159303, 0.123346 )
 mesh = SubResource( 5 )
 material/0 = SubResource( 8 )
+
+[node name="UI" type="Control" parent="."]
+margin_top = 1.0
+margin_right = 205.0
+margin_bottom = 92.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+margin_left = 3.0
+margin_top = 43.0
+margin_right = 201.0
+margin_bottom = 86.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI"]
+margin_left = 4.0
+margin_top = 42.0
+margin_right = 204.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_colors/font_color = Color( 0.960784, 0.72549, 0.611765, 1 )
+custom_colors/font_outline_modulate = Color( 0.992157, 0.121569, 0.121569, 1 )
+text = "BOOST"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KillPlane" type="StaticBody" parent="."]
+transform = Transform( 1359.59, 0, 0, 0, 1, 0, 0, 0, 1359.59, 0, -7.82404, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KillPlane"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 10 )
