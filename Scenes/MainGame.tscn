@@ -148,7 +148,7 @@ transform = Transform( 1359.59, 0, 0, 0, 1, 0, 0, 0, 1359.59, 0, -7.82404, 0 )
 shape = SubResource( 10 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( -3.94378e-07, 0, -4.03436, 0, 10.8213, 0, 4.86583, 0, -9.5106e-08, 18.4508, 2.13788, -1.78814e-07 )
+transform = Transform( -3.94378e-07, 0, -4.03436, 0, 4.04361, 0, 4.86583, 0, -9.5106e-08, 18.4508, 2.13788, -1.78814e-07 )
 texture = SubResource( 14 )
 
 [node name="Viewport" type="Viewport" parent="Sprite3D"]
