@@ -45,19 +45,22 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.name == "KillPlane":
-			velocity = Vector3.ZERO # reset values before spawn
-			sliding_percent = 0.0
-			self.translation = get_parent().get_node("Respawn").translation
+			resetLevel() # restart level
+		if collision.collider.name == "Checkpoint1":
+			print('Checkpoint!')
 			
-
-""" Rotation controls for when sliding
-if Input.is_action_pressed("right"):
-		rotate_y(-rot_speed * delta)
-	if Input.is_action_pressed("left"):
-		rotate_y(rot_speed * delta)
-"""
+func resetLevel():
+	get_tree().reload_current_scene()
+#	velocity = Vector3.ZERO # reset values before spawn
+#	sliding_percent = 0.0
+#	self.translation = get_parent().get_node("Respawn").translation
+	# tell player OOF
 		
 func get_input(delta):
+	# restart
+	if Input.is_action_just_pressed("restart"):
+		resetLevel()
+	
 	# ui controls
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -109,15 +112,14 @@ func get_input(delta):
 		sliding_percent = max(0, sliding_percent)
 	
 	# movement dampening
-	if abs(velocity.x) > 0:
-		velocity.x -= velocity.x/10
-		if abs(velocity.x) < .07:
-			velocity.x = 0
-	if abs(velocity.z) > 0:
-		velocity.z -= velocity.z/10
-		if abs(velocity.z) < .07:
-			velocity.z = 0
+	else:
+		if abs(velocity.x) > 0:
+			velocity.x -= velocity.x/10
+			if abs(velocity.x) < .07:
+				velocity.x = 0
+		if abs(velocity.z) > 0:
+			velocity.z -= velocity.z/10
+			if abs(velocity.z) < .07:
+				velocity.z = 0
 
-
-#	print(velocity)
 

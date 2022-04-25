@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Viewport.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=2]
 radius = 0.673946
@@ -43,6 +44,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02511, 0 )
 
 [node name="Player" type="KinematicBody" parent="."]
 transform = Transform( -2.64495e-08, 0, -0.605093, 0, 0.605093, 0, 0.605093, 0, -2.64495e-08, 0.00230408, 1.04259, 0.0166101 )
+collision_layer = 2
 script = ExtResource( 1 )
 rot_speed = 3.589
 
@@ -59,7 +61,7 @@ material/0 = null
 transform = Transform( 1.65264, -2.13163e-14, 9.23706e-14, 0, 1.60741, 0.384005, -9.9476e-14, -0.384005, 1.60741, -2.23517e-08, 1.91223, 5.15797 )
 
 [node name="Floor" type="StaticBody" parent="."]
-transform = Transform( 7.41185, 0, 0, 0, 1, 0, 0, 0, 7.41185, 0, 0, 0 )
+transform = Transform( 7.41185, 0, 0, 0, 1, 0, 0, 0, 50.1441, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00286211, 0.0482435, -0.00696124 )
@@ -171,3 +173,14 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1.858, 0, 0, 0, 10.1069, 19.4849, 1.68274, 0 )
 mesh = SubResource( 12 )
 material/0 = SubResource( 13 )
+
+[node name="Checkpoints" type="Node" parent="."]
+
+[node name="Checkpoint1" parent="Checkpoints" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33362, 3.41405, -10.4578 )
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0344, 3.15232, 7.64982 )
+
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5803, 0.898371, 36.485 )
