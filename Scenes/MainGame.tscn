@@ -1,14 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Viewport.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=3]
-
-[sub_resource type="CapsuleShape" id=2]
-radius = 0.802417
-height = 1.4067
-
-[sub_resource type="CapsuleMesh" id=6]
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 6.41264, 0.099379, 5.84959 )
@@ -42,23 +36,8 @@ transform = Transform( 0.534338, 0, 0, 0, 0.534338, 0, 0, 0, 0.534338, 0.0010829
 [node name="Respawn" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02511, 0 )
 
-[node name="Player" type="KinematicBody" parent="."]
+[node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( -2.64495e-08, 0, -0.605093, 0, 0.605093, 0, 0.605093, 0, -2.64495e-08, 0.00230408, 1.04259, 0.0166101 )
-collision_layer = 2
-script = ExtResource( 1 )
-rot_speed = 3.589
-
-[node name="CollisionShape" type="CollisionShape" parent="Player"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 2 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Player"]
-transform = Transform( -3.67131e-08, 1.00201, -4.37992e-08, 0, -4.37992e-08, -1.00201, -0.839897, -4.37992e-08, 1.91452e-15, 0, 0, 0 )
-mesh = SubResource( 6 )
-material/0 = null
-
-[node name="Camera" type="Camera" parent="Player"]
-transform = Transform( 1.65264, -2.13163e-14, 9.23706e-14, 0, 1.60741, 0.384005, -9.9476e-14, -0.384005, 1.60741, -2.23517e-08, 1.91223, 5.15797 )
 
 [node name="Floor" type="StaticBody" parent="."]
 transform = Transform( 7.41185, 0, 0, 0, 1, 0, 0, 0, 50.1441, 0, 0, 0 )
@@ -73,7 +52,7 @@ mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Floor2" type="StaticBody" parent="."]
-transform = Transform( -0.274175, 0.0919519, -0.0303247, -0.00173214, 0.819034, 0.122546, 0.0470216, 0.566327, -0.172304, 4.81465, 0.856678, -3.46099 )
+transform = Transform( -0.274175, 0.0919519, -0.0303247, -0.00173214, 0.819034, 0.122546, 0.0470216, 0.566327, -0.172304, 4.81465, 0.652287, -3.46099 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor2"]
 shape = SubResource( 4 )
@@ -84,7 +63,7 @@ mesh = SubResource( 5 )
 material/0 = SubResource( 8 )
 
 [node name="Floor3" type="StaticBody" parent="."]
-transform = Transform( -0.274175, -0.116702, -0.0261528, -0.00173214, 0.748398, -0.141665, 0.0470216, -0.6529, -0.157711, -14.1968, 0.93701, -0.400109 )
+transform = Transform( -0.274175, -0.116702, -0.0261528, -0.00173214, 0.748398, -0.141665, 0.0470216, -0.6529, -0.157711, -14.1968, 0.702151, -0.400109 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor3"]
 shape = SubResource( 4 )
@@ -184,3 +163,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0344, 3.15232, 7.64982 )
 
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5803, 0.898371, 36.485 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1.71141, -0.735774, 0.179207, 0.142497, 0.74785, 1.70963, -0.743756, -1.54976, 0.739912, -50.6008, 27.1686, -4.09782e-07 )
+light_energy = 0.78
+light_indirect_energy = 1.081
+light_specular = 1.087

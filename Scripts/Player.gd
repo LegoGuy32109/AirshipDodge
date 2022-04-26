@@ -2,6 +2,8 @@ extends KinematicBody
 
 export var gravity = Vector3.DOWN * 50
 
+export var anim_speed = 12
+
 export var speed = 1.5
 export var max_speed = 4
 var og_speed = speed
@@ -24,6 +26,7 @@ var mouse_sens = 0.3
 var camera_anglev=0
 
 onready var UI = get_parent().find_node('UI')
+onready var robo = $roboPlayer.get_node('Armature/Skeleton/Robo')
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
@@ -42,6 +45,7 @@ func _physics_process(delta):
 	# UI
 	UI.find_node('ProgressBar').set('value', sliding_percent)
 	
+	# Collisions
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.name == "KillPlane":
@@ -49,6 +53,26 @@ func _physics_process(delta):
 		if collision.collider.name == "Checkpoint1":
 			print('Checkpoint!')
 			
+	# Animations (Shape Keys)
+	roboAnim(delta)
+			
+			
+func roboAnim(delta):
+	var curAirValue = robo.get("blend_shapes/Air")
+	var curSlidingValue = robo.get("blend_shapes/Slide")
+	if is_on_floor():
+		if curAirValue >= -0.5:
+			robo.set("blend_shapes/Air", curAirValue - delta * anim_speed)
+	else:
+		if curAirValue <= 1.1:
+			robo.set("blend_shapes/Air", curAirValue + delta * anim_speed)
+			
+	if sliding and curSlidingValue <= 1.0:
+		robo.set("blend_shapes/Slide", curSlidingValue + delta * anim_speed)
+	elif not sliding and curSlidingValue >= 0:
+		robo.set("blend_shapes/Slide", curSlidingValue - delta * anim_speed)
+	
+	
 func resetLevel():
 	get_tree().reload_current_scene()
 #	velocity = Vector3.ZERO # reset values before spawn
