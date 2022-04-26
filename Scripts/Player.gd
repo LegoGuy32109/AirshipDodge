@@ -26,7 +26,7 @@ var mouse_sens = 0.3
 var camera_anglev=0
 
 onready var UI = get_parent().find_node('UI')
-onready var robo = $roboPlayer.get_node('Armature/Skeleton/Robo')
+onready var robo = get_node('Robo')
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
