@@ -5,8 +5,8 @@
 [ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=2]
-radius = 0.673946
-height = 1.15218
+radius = 0.802417
+height = 1.4067
 
 [sub_resource type="CapsuleMesh" id=6]
 
@@ -37,7 +37,7 @@ viewport_path = NodePath("Sprite3D/Viewport")
 albedo_color = Color( 0.87451, 0.615686, 0.0627451, 1 )
 
 [node name="World" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010829, -2.24871, 0.0428755 )
+transform = Transform( 0.534338, 0, 0, 0, 0.534338, 0, 0, 0, 0.534338, 0.0010829, -2.24871, 0.0428755 )
 
 [node name="Respawn" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02511, 0 )
@@ -174,7 +174,7 @@ transform = Transform( 1, 0, 0, 0, 1.858, 0, 0, 0, 10.1069, 19.4849, 1.68274, 0 
 mesh = SubResource( 12 )
 material/0 = SubResource( 13 )
 
-[node name="Checkpoints" type="Node" parent="."]
+[node name="Checkpoints" type="Spatial" parent="."]
 
 [node name="Checkpoint1" parent="Checkpoints" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33362, 3.41405, -10.4578 )

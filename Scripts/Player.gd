@@ -2,11 +2,11 @@ extends KinematicBody
 
 export var gravity = Vector3.DOWN * 50
 
-export var speed = 3
-export var max_speed = 10
+export var speed = 1.5
+export var max_speed = 4
+var og_speed = speed
 
-
-export var slide_speed = 10
+export var slide_speed = 4
 
 export var init_jump_speed = 16
 var jump_speed = init_jump_speed
@@ -73,15 +73,15 @@ func get_input(delta):
 	if Input.is_action_pressed("backward"):
 		velocity += transform.basis.z * speed
 	if Input.is_action_pressed("right"):
-		if sliding:
-			rotate_y(-rot_speed * delta)
-		else:
-			velocity += transform.basis.x * speed
+		velocity += transform.basis.x * speed
 	if Input.is_action_pressed("left"):
-		if sliding:
-			rotate_y(rot_speed * delta)
-		else:
-			velocity += -transform.basis.x * speed
+		velocity += -transform.basis.x * speed
+	
+	if (Input.is_action_pressed("backward") or Input.is_action_pressed("forward") or Input.is_action_pressed("right") or Input.is_action_pressed("left")) and is_on_floor():
+		speed += delta
+		speed = min(max_speed, speed)
+	else:
+		speed = og_speed
 	
 	# jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -112,14 +112,17 @@ func get_input(delta):
 		sliding_percent = max(0, sliding_percent)
 	
 	# movement dampening
-	else:
-		if abs(velocity.x) > 0:
-			velocity.x -= velocity.x/10
-			if abs(velocity.x) < .07:
-				velocity.x = 0
-		if abs(velocity.z) > 0:
-			velocity.z -= velocity.z/10
-			if abs(velocity.z) < .07:
-				velocity.z = 0
+	var dampFactor = 10
+	if sliding:
+		dampFactor = 30
+	
+	if abs(velocity.x) > 0:
+		velocity.x -= velocity.x/dampFactor
+		if abs(velocity.x) < .07:
+			velocity.x = 0
+	if abs(velocity.z) > 0:
+		velocity.z -= velocity.z/dampFactor
+		if abs(velocity.z) < .07:
+			velocity.z = 0
 
 

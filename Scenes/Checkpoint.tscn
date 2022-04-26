@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/CircleMesh.tres" type="SphereMesh" id=2]
 
 [sub_resource type="SphereShape" id=15]
-radius = 1.42688
+radius = 1.75186
 
 [sub_resource type="SpatialMaterial" id=18]
 flags_transparent = true
