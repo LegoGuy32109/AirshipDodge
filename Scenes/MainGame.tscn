@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Viewport.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=4]
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 6.41264, 0.099379, 5.84959 )
@@ -88,6 +89,7 @@ material/0 = SubResource( 8 )
 margin_top = 1.0
 margin_right = 205.0
 margin_bottom = 92.0
+script = ExtResource( 4 )
 
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
 margin_left = 3.0
@@ -115,6 +117,17 @@ text = "BOOST"
 align = 1
 valign = 1
 
+[node name="WinText" type="Label" parent="UI"]
+margin_left = 6.0
+margin_top = 193.0
+margin_right = 234.0
+margin_bottom = 250.0
+text = "You Win!
+
+Press R to restart for a faster time ;)"
+align = 1
+valign = 1
+
 [node name="KillPlane" type="StaticBody" parent="."]
 transform = Transform( 1359.59, 0, 0, 0, 1, 0, 0, 0, 1359.59, 0, -7.82404, 0 )
 
@@ -126,7 +139,7 @@ transform = Transform( -3.94378e-07, 0, -4.03436, 0, 4.04361, 0, 4.86583, 0, -9.
 texture = SubResource( 14 )
 
 [node name="Viewport" type="Viewport" parent="Sprite3D"]
-size = Vector2( 363, 48 )
+size = Vector2( 297, 48 )
 transparent_bg = true
 render_target_v_flip = true
 script = ExtResource( 2 )
@@ -136,7 +149,7 @@ margin_right = 124.0
 margin_bottom = 14.0
 text = "Hold Space when in the air to charge BOOST!
 
-Instead of Strafeing, you Rotate as you slide during boost"
+When you collect all the checkpoints, you win!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
