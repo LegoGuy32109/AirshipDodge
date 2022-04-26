@@ -37,7 +37,6 @@ transform = Transform( 0.534338, 0, 0, 0, 0.534338, 0, 0, 0, 0.534338, 0.0010829
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02511, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -2.64495e-08, 0, -0.605093, 0, 0.605093, 0, 0.605093, 0, -2.64495e-08, 0.00230408, 1.04259, 0.0166101 )
 
 [node name="Floor" type="StaticBody" parent="."]
 transform = Transform( 7.41185, 0, 0, 0, 1, 0, 0, 0, 50.1441, 0, 0, 0 )
@@ -89,9 +88,6 @@ material/0 = SubResource( 8 )
 margin_top = 1.0
 margin_right = 205.0
 margin_bottom = 92.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
 margin_left = 3.0
@@ -118,9 +114,6 @@ custom_colors/font_outline_modulate = Color( 0.992157, 0.121569, 0.121569, 1 )
 text = "BOOST"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="KillPlane" type="StaticBody" parent="."]
 transform = Transform( 1359.59, 0, 0, 0, 1, 0, 0, 0, 1359.59, 0, -7.82404, 0 )
