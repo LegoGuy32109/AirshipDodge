@@ -2,11 +2,13 @@ extends KinematicBody
 
 export var gravity = Vector3.DOWN * 50
 
-export var speed = 3
-export var max_speed = 10
+export var anim_speed = 12
 
+export var speed = 1.5
+export var max_speed = 4
+var og_speed = speed
 
-export var slide_speed = 10
+export var slide_speed = 4
 
 export var init_jump_speed = 16
 var jump_speed = init_jump_speed
@@ -24,6 +26,7 @@ var mouse_sens = 0.3
 var camera_anglev=0
 
 onready var UI = get_parent().find_node('UI')
+onready var robo = $roboPlayer.get_node('Armature/Skeleton/Robo')
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
@@ -42,22 +45,46 @@ func _physics_process(delta):
 	# UI
 	UI.find_node('ProgressBar').set('value', sliding_percent)
 	
+	# Collisions
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.name == "KillPlane":
-			velocity = Vector3.ZERO # reset values before spawn
-			sliding_percent = 0.0
-			self.translation = get_parent().get_node("Respawn").translation
+			resetLevel() # restart level
+		if collision.collider.name == "Checkpoint1":
+			print('Checkpoint!')
 			
-
-""" Rotation controls for when sliding
-if Input.is_action_pressed("right"):
-		rotate_y(-rot_speed * delta)
-	if Input.is_action_pressed("left"):
-		rotate_y(rot_speed * delta)
-"""
+	# Animations (Shape Keys)
+	roboAnim(delta)
+			
+			
+func roboAnim(delta):
+	var curAirValue = robo.get("blend_shapes/Air")
+	var curSlidingValue = robo.get("blend_shapes/Slide")
+	if is_on_floor():
+		if curAirValue >= -0.5:
+			robo.set("blend_shapes/Air", curAirValue - delta * anim_speed)
+	else:
+		if curAirValue <= 1.1:
+			robo.set("blend_shapes/Air", curAirValue + delta * anim_speed)
+			
+	if sliding and curSlidingValue <= 1.0:
+		robo.set("blend_shapes/Slide", curSlidingValue + delta * anim_speed)
+	elif not sliding and curSlidingValue >= 0:
+		robo.set("blend_shapes/Slide", curSlidingValue - delta * anim_speed)
+	
+	
+func resetLevel():
+	get_tree().reload_current_scene()
+#	velocity = Vector3.ZERO # reset values before spawn
+#	sliding_percent = 0.0
+#	self.translation = get_parent().get_node("Respawn").translation
+	# tell player OOF
 		
 func get_input(delta):
+	# restart
+	if Input.is_action_just_pressed("restart"):
+		resetLevel()
+	
 	# ui controls
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -70,15 +97,15 @@ func get_input(delta):
 	if Input.is_action_pressed("backward"):
 		velocity += transform.basis.z * speed
 	if Input.is_action_pressed("right"):
-		if sliding:
-			rotate_y(-rot_speed * delta)
-		else:
-			velocity += transform.basis.x * speed
+		velocity += transform.basis.x * speed
 	if Input.is_action_pressed("left"):
-		if sliding:
-			rotate_y(rot_speed * delta)
-		else:
-			velocity += -transform.basis.x * speed
+		velocity += -transform.basis.x * speed
+	
+	if (Input.is_action_pressed("backward") or Input.is_action_pressed("forward") or Input.is_action_pressed("right") or Input.is_action_pressed("left")) and is_on_floor():
+		speed += delta
+		speed = min(max_speed, speed)
+	else:
+		speed = og_speed
 	
 	# jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -109,15 +136,17 @@ func get_input(delta):
 		sliding_percent = max(0, sliding_percent)
 	
 	# movement dampening
+	var dampFactor = 10
+	if sliding:
+		dampFactor = 30
+	
 	if abs(velocity.x) > 0:
-		velocity.x -= velocity.x/10
+		velocity.x -= velocity.x/dampFactor
 		if abs(velocity.x) < .07:
 			velocity.x = 0
 	if abs(velocity.z) > 0:
-		velocity.z -= velocity.z/10
+		velocity.z -= velocity.z/dampFactor
 		if abs(velocity.z) < .07:
 			velocity.z = 0
 
-
-#	print(velocity)
 
