@@ -10,10 +10,7 @@ var og_speed = speed
 
 export var slide_speed = 4
 
-export var init_jump_speed = 16
-var jump_speed = init_jump_speed
-
-export var rot_speed = 0.15
+export var jump_speed = 16
 
 var velocity = Vector3.ZERO
 
@@ -23,7 +20,10 @@ var jumping = false
 var sliding_percent = 0.0
 
 var mouse_sens = 0.3
-var camera_anglev=0
+
+var totalTime = 0.0
+var isRacing = false
+var timeString = '00:00:00'
 
 onready var UI = get_parent().find_node('UI')
 onready var robo = get_node('Robo')
@@ -37,22 +37,27 @@ func _input(event):
 		self.rotate_y(deg2rad(-event.relative.x*mouse_sens))
 		
 			
+func timer(delta):
+	if isRacing:
+		totalTime += delta
+		#https://gamedevbeginner.com/how-to-make-a-timer-in-godot-count-up-down-in-minutes-seconds/#stopwatch
+		timeString = "%02d:%02d:%02d" % [totalTime / 60, fmod(totalTime, 60), fmod(totalTime, 1) * 100]
+
 func _physics_process(delta):
+	timer(delta)
 	velocity += gravity * delta
 	get_input(delta) # for user input, WASD controls
 	velocity = move_and_slide(velocity, Vector3.UP) # second input labels ground 
 	
 	# UI
 	UI.find_node('ProgressBar').set('value', sliding_percent)
-	
+	UI.find_node('TimerLabel').set('text', timeString)
 	# Collisions
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.name == "KillPlane":
 			resetLevel() # restart level
-		if collision.collider.name == "Checkpoint1":
-			print('Checkpoint!')
-			
+
 	# Animations (Shape Keys)
 	roboAnim(delta)
 			
@@ -74,10 +79,9 @@ func roboAnim(delta):
 	
 	
 func resetLevel():
+# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
-#	velocity = Vector3.ZERO # reset values before spawn
-#	sliding_percent = 0.0
-#	self.translation = get_parent().get_node("Respawn").translation
+
 	# tell player OOF
 		
 func get_input(delta):

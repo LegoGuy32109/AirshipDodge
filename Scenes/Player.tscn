@@ -9,15 +9,13 @@
 transform = Transform( -2.64495e-08, 0, -0.605093, 0, 0.605093, 0, 0.605093, 0, -2.64495e-08, 0.00230408, 1.04259, 0.0166101 )
 collision_layer = 2
 script = ExtResource( 1 )
-rot_speed = 3.589
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.740572, -4.9738e-14, -9.52912e-22, 0, -3.23714e-08, 0.740572, -4.9738e-14, -0.740572, -3.23714e-08, -0.00475779, 0.0264611, 0.00213401 )
 shape = SubResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.911051, 0.412294, 0, -0.412294, 0.911051, 0, 2.973, 3.295 )
-fov = 79.0
-
 [node name="Robo" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.49625, 0, -2.16918e-08, 0, 0.49625, 0, 2.16918e-08, 0, 0.49625, 0.0157698, 0, -0.168916 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1.87147, 0, 0, 0, 1.78314, 0.568181, 0, -0.568181, 1.78314, 0, 2.201, 3.978 )
