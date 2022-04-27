@@ -55,3 +55,32 @@ Shape Keys were my preferred method of animating the character, as I envisioned 
 I just wanted to mention the player model is a kind of hard-modeling style. To accomplish this in blender, it's recommended to use subtle bevels to make a model look like a realistic hard surface object. I don't have a very realistic model, but I was impressed with the smooth finish I was able to create. 
 
 In blender if you select your objcet and `Shade Smooth`, the sharp edges will make the model look strange, but if you go to the *Object Data Properties* panel and check `Auto Smooth` this turns the model into a very smooth, yet well defined model. It smoothes the edges that are less than a certain angle, the default is 30 degrees. I changed this value to 20.6 degrees to get a good finish on the front areodynamic curves of the player robot, but maintianing the definition of it's fins in the back.
+
+## Speedrunning Timer
+To really get the game exciting, I have a timer UI element in the top left of the screen that keeps track of the time it takes the player to complete the level. 
+
+![image](https://user-images.githubusercontent.com/37216503/165428643-a7e59ce2-a252-48c4-9ef7-4d34dbd17bf3.png)
+
+I keep track of time by just adding the `delta` variable in the `_process()` function when the player hits the first checkpoint, and ending it when the player reaches the last one. I was able to format the timer in minutes:seconds:milliseconds thanks to this useful code from [John's Godot blog](https://gamedevbeginner.com/how-to-make-a-timer-in-godot-count-up-down-in-minutes-seconds/#stopwatch). The code that worked for me was 
+
+`timeString = "%02d:%02d:%02d" % [totalTime / 60, fmod(totalTime, 60), fmod(totalTime, 1) * 100]`
+
+I then update the Label displaying the time with `timeString` each frame to give an accurate speedrunning clock. This encourages players to master the controls and try to complete the level as fast as possible. You can also retry the level whenever you want with the **R** key.
+
+## Checkpoints
+Mentioning the timer reminded me about the checkpoints I designed. 
+
+![image](https://user-images.githubusercontent.com/37216503/165429340-987351fd-2114-4009-96be-29d1f4b51179.png)
+
+The checkpoints are transparent spheres that have a small particle affect applied to them. I indicate the next checkpoint the player is supposed to hit with a green material. The checkpoints all by default have a green material, but I override them with a blue material thanks to Godot's cool **Material Override** attribute for meshes. When a checkpoint becomes the next checkpoint the player needs to hit, I just set the `$MeshInstance.material_override = null`, you can see it in action in the `Scripts/Checkpoint.gd` script. In that script I also contain the logic to make sure the player completes the checkpoints in the right order. The checkpoints are all children of an empty and are labeled like this:
+
+![image](https://user-images.githubusercontent.com/37216503/165429796-481ccf6e-1936-4777-bcd6-db87f4de6c18.png)
+
+The numbering actually isn't important, their index under their parent is. The checkpoint at index [0] is set to be the first one the player has to hit, a green checkpoint. When the player does hit it, and it can only hit the active checkpoint, the checkpoint `queue_free()`'s itself and removes itself from the scene. That means the next checkpoint is now index [0] and the cycle continues until the Checkpoints parent doesn't have any children. Then the player has beat the level, and it will load the next level in 2 seconds.
+
+## Levels, and other Input Controls
+The levels consist of a scene saved like `Level1.tscn, Level2.tscn... ` when the player completes the level hitting all the checkpoints in the right order, it takes the number of the current level by substringing the name of the parent node. Then adds 1 to it and loads the next level. I manually check when the player has reached the last level, and set the next level to be loaded Level1 so the game loops.
+
+The mouse contols are simply moving the mouse along the y axis, and recording that movement to rotate the player around the scene. To accomplish this however, I need to make sure the mouse cursor is captured so that it doesn't leave the window for a 180 turn. I can accompish this by setting the mouse mode to `MOUSE_MODE_CAPTURED`, however now the player can't close the window or do anything else with the mouse since it's captured. So I then programmed that when the esc key was pressed, the mouse mode was now `MOUSE_MODE_VISIBLE`, so it could leave the game window. Now when the player wants to return to their cursor captured by the mouse, they can just click within the game and the mode goes back to captured. This is a standard control sceme for most PC applications, so I assumed the player would instinctively attempt these controls to get the desired result.
+
+That's about all the unique stuff I did for this game, I hope it showcased my knowledge of the engine and was a project at a 400 level. Thanks for reading!
