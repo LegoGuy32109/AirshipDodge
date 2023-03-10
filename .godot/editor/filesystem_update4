@@ -1,0 +1,11 @@
+res://default_env.tres
+res://Scenes/Levels/Level1.tscn
+res://Scenes/Player.tscn
+res://test.tscn
+res://Scenes/Robo.tscn
+res://Scenes/Checkpoint.tscn
+res://README.md
+res://Scenes/CircleMesh.tres
+res://Scripts/Player.gd
+res://Scripts/Checkpoint.gd
+res://Scripts/UI.gd

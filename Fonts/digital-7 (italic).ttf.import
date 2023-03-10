@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bk0pctur7n80q"
+path="res://.godot/imported/digital-7 (italic).ttf-10b02e3e2c3d781566f96d03ff743ca6.fontdata"
+
+[deps]
+
+source_file="res://Fonts/digital-7 (italic).ttf"
+dest_files=["res://.godot/imported/digital-7 (italic).ttf-10b02e3e2c3d781566f96d03ff743ca6.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

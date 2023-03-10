@@ -1,18 +1,18 @@
-extends Area
+extends Area3D
 
 var is_next = false
 
-func _on_Checkpoint1_body_entered(body):
+func _on_Checkpoint1_body_entered(_body):
 	if is_next:
 		get_parent().get_parent().get_node("Player").isRacing = true
 		if get_parent().get_child_count() == 1:
 			get_parent().get_parent().get_node("Player").isRacing = false
 		queue_free()
 	
-func _process(delta):
+func _process(_delta):
 	if is_next:
-		$MeshInstance.material_override = null
+		$MeshInstance3D.material_override = null
 	elif(get_parent().get_children()[0] == self):
 		is_next = true
-		print(self.name, " is the top checkpoint")
+#		print(self.name, " is the top checkpoint")
 

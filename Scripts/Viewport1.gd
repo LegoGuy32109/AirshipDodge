@@ -1,5 +1,5 @@
-tool extends Viewport
+@tool extends SubViewport
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	size = $Label1.rect_size
+	size = $Label1.size

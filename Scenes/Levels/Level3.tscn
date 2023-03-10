@@ -1,57 +1,57 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Fonts/digital-7 (mono).ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/digital-7 (mono).ttf" type="FontFile" id=1]
 [ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=4]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.21152, 0.162008, 0.19546 )
+[sub_resource type="BoxShape3D" id=1]
+size = Vector3( 0.21152, 0.162008, 0.19546 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 40
-extra_spacing_top = -13
+spacing_top = -13
 font_data = ExtResource( 1 )
 
-[sub_resource type="BoxShape" id=8]
-extents = Vector3( 6.41264, 0.099379, 5.84959 )
+[sub_resource type="BoxShape3D" id=8]
+size = Vector3( 6.41264, 0.099379, 5.84959 )
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="StandardMaterial3D" id=7]
 albedo_color = Color( 0.592157, 0.12549, 0.12549, 1 )
 
-[sub_resource type="CubeMesh" id=9]
+[sub_resource type="BoxMesh" id=9]
 material = SubResource( 7 )
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="StandardMaterial3D" id=10]
 albedo_color = Color( 0.533333, 0.105882, 0.313726, 1 )
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="StandardMaterial3D" id=11]
 albedo_color = Color( 0.105882, 0.333333, 0.533333, 1 )
 
-[node name="Level3" type="Spatial"]
+[node name="Level3" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 
-[node name="KillPlane" type="StaticBody" parent="."]
-transform = Transform( 1359.59, 0, 0, 0, 1, 0, 0, 0, 1359.59, 0, -7.82404, 0 )
+[node name="KillPlane" type="StaticBody3D" parent="."]
+transform = Transform3D( 1359.59, 0, 0, 0, 1, 0, 0, 0, 1359.59, 0, -7.82404, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="KillPlane"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillPlane"]
 shape = SubResource( 1 )
 
 [node name="UI" type="Control" parent="."]
-margin_top = 1.0
-margin_right = 205.0
-margin_bottom = 92.0
+offset_top = 1.0
+offset_right = 205.0
+offset_bottom = 92.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
-margin_left = 4.0
-margin_top = 60.0
-margin_right = 202.0
-margin_bottom = 103.0
+offset_left = 4.0
+offset_top = 60.0
+offset_right = 202.0
+offset_bottom = 103.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
@@ -61,10 +61,10 @@ __meta__ = {
 }
 
 [node name="BoostLabel" type="Label" parent="UI"]
-margin_left = 5.0
-margin_top = 59.0
-margin_right = 205.0
-margin_bottom = 105.0
+offset_left = 5.0
+offset_top = 59.0
+offset_right = 205.0
+offset_bottom = 105.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_colors/font_color = Color( 0.960784, 0.72549, 0.611765, 1 )
@@ -74,10 +74,10 @@ align = 1
 valign = 1
 
 [node name="WinText" type="Label" parent="UI"]
-margin_left = 6.0
-margin_top = 193.0
-margin_right = 234.0
-margin_bottom = 250.0
+offset_left = 6.0
+offset_top = 193.0
+offset_right = 234.0
+offset_bottom = 250.0
 text = "You Win!
 
 Press R to restart for a faster time ;)"
@@ -86,110 +86,110 @@ valign = 1
 
 [node name="TimerLabel" type="Button" parent="UI"]
 modulate = Color( 0.643137, 1, 0.505882, 1 )
-margin_left = 17.0
-margin_top = 9.0
-margin_right = 187.0
-margin_bottom = 55.0
-hint_tooltip = "The time elapsed when starting the level at the first checkpoint"
+offset_left = 17.0
+offset_top = 9.0
+offset_right = 187.0
+offset_bottom = 55.0
+tooltip_text = "The time elapsed when starting the level at the first checkpoint"
 focus_mode = 0
 custom_fonts/font = SubResource( 2 )
 button_mask = 0
-enabled_focus_mode = 0
+focus_mode = 0
 text = "00:00:00"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Checkpoints" type="Spatial" parent="."]
+[node name="Checkpoints" type="Node3D" parent="."]
 
 [node name="Checkpoint1" parent="Checkpoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4575, 6.101, -4.218 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4575, 6.101, -4.218 )
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4577, 6.10099, 4.60767 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4577, 6.10099, 4.60767 )
 
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.0367, 9.41726, 0.611976 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.0367, 9.41726, 0.611976 )
 
-[node name="Floor2" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36079, 0, 0 )
+[node name="Floor2" type="StaticBody3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36079, 0, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor2"]
-transform = Transform( 6.19771, -1.67638e-08, 0, 1.49012e-08, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513268, 0.0159311, 0.123347 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2"]
+transform = Transform3D( 6.19771, -1.67638e-08, 0, 1.49012e-08, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513268, 0.0159311, 0.123347 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 10 )
 
-[node name="Floor5" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.823, 0, 0 )
+[node name="Floor5" type="StaticBody3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.823, 0, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor5"]
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor5"]
-transform = Transform( 6.19771, -1.67638e-08, 0, 1.49012e-08, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513268, 0.0159311, 0.123347 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor5"]
+transform = Transform3D( 6.19771, -1.67638e-08, 0, 1.49012e-08, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513268, 0.0159311, 0.123347 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 10 )
 
-[node name="Floor3" type="StaticBody" parent="."]
-transform = Transform( 0.482151, -0.425827, 0, 0.226914, 0.904805, 0, 0, 0, 0.244143, 12.013, 1.21937, 4.60245 )
+[node name="Floor3" type="StaticBody3D" parent="."]
+transform = Transform3D( 0.482151, -0.425827, 0, 0.226914, 0.904805, 0, 0, 0, 0.244143, 12.013, 1.21937, 4.60245 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor3"]
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor3"]
-transform = Transform( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor3"]
+transform = Transform3D( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 11 )
 
-[node name="Floor8" type="StaticBody" parent="."]
-transform = Transform( 0.639113, -0.392132, 0, 0.807169, 1.27676, 0, 0, 0, 0.244143, 44.7655, 4.84664, 0.56007 )
+[node name="Floor8" type="StaticBody3D" parent="."]
+transform = Transform3D( 0.639113, -0.392132, 0, 0.807169, 1.27676, 0, 0, 0, 0.244143, 44.7655, 4.84664, 0.56007 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor8"]
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor8"]
-transform = Transform( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor8"]
+transform = Transform3D( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 11 )
 
-[node name="Floor4" type="StaticBody" parent="."]
-transform = Transform( 0.482151, -0.425827, 0, 0.226914, 0.904805, 0, 0, 0, 0.244143, 12.013, 1.21937, -4.5504 )
+[node name="Floor4" type="StaticBody3D" parent="."]
+transform = Transform3D( 0.482151, -0.425827, 0, 0.226914, 0.904805, 0, 0, 0, 0.244143, 12.013, 1.21937, -4.5504 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor4"]
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor4"]
-transform = Transform( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor4"]
+transform = Transform3D( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 11 )
 
-[node name="Floor6" type="StaticBody" parent="."]
-transform = Transform( 0.482952, 0.422618, 0, -0.225204, 0.906308, 0, 0, 0, 0.244143, 24.909, 1.21937, 4.60245 )
+[node name="Floor6" type="StaticBody3D" parent="."]
+transform = Transform3D( 0.482952, 0.422618, 0, -0.225204, 0.906308, 0, 0, 0, 0.244143, 24.909, 1.21937, 4.60245 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor6"]
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor6"]
-transform = Transform( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor6"]
+transform = Transform3D( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 11 )
 
-[node name="Floor7" type="StaticBody" parent="."]
-transform = Transform( 0.482952, 0.422618, 0, -0.225204, 0.906308, 0, 0, 0, 0.244143, 24.909, 1.21937, -4.5504 )
+[node name="Floor7" type="StaticBody3D" parent="."]
+transform = Transform3D( 0.482952, 0.422618, 0, -0.225204, 0.906308, 0, 0, 0, 0.244143, 24.909, 1.21937, -4.5504 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor7"]
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor7"]
-transform = Transform( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor7"]
+transform = Transform3D( 6.19771, -1.49012e-08, 0, 0, 0.0797576, -5.96046e-08, 3.57628e-07, 4.47035e-08, 5.75248, -0.0513306, 0.0159311, 0.123346 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 11 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1.71141, -0.735774, 0.179207, 0.142497, 0.74785, 1.70963, -0.743756, -1.54976, 0.739912, -50.6008, 27.1686, -4.09782e-07 )
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D( 1.71141, -0.735774, 0.179207, 0.142497, 0.74785, 1.70963, -0.743756, -1.54976, 0.739912, -50.6008, 27.1686, -4.09782e-07 )
 light_energy = 0.78
 light_indirect_energy = 1.081
 light_specular = 1.087
