@@ -1,50 +1,51 @@
 2a60927148abd1d33b818b535e306557
-::res://::1678403697
-default_env.tres::Environment::4819347569625180163::1678403687::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1651025301::0::1::::<><>::
-icon.png::CompressedTexture2D::4188971289166344791::1650729102::1678403697::1::::<><>::
-README.md::TextFile::-1::1651025494::0::1::::<><>::
-::res://BlenderFiles/::1678403972
-Laser.material::StandardMaterial3D::-1::1650998991::0::1::::<><>::
-LegMetal.material::StandardMaterial3D::-1::1650998991::0::1::::<><>::
-LightMetal.material::StandardMaterial3D::-1::1650998991::0::1::::<><>::
-Robo.material::StandardMaterial3D::-1::1650998991::0::1::::<><>::
-roboPlayer2.gltf::PackedScene::2488878742195343979::1678403972::1678403978::1::::<><>::
-roboPlayer.glb::PackedScene::3050411012226319220::1650942836::1678403698::1::::<><>::
-roboPlayer.gltf::PackedScene::4201457912716643582::1651082119::1678403698::1::::<><>::
-roboPlayer_000001.obj::Mesh::6005734468943300156::1651082555::1678403697::1::::<><>::
-Screen.material::StandardMaterial3D::-1::1650998991::0::1::::<><>::
-Wheel.material::StandardMaterial3D::-1::1650998991::0::1::::<><>::
-WhiteJoint.material::StandardMaterial3D::-1::1650998991::0::1::::<><>::
-::res://BlenderFiles/roboPlayer/::1650998957
-Laser.material::StandardMaterial3D::-1::1650998845::0::1::::<><>::
-LegMetal.material::StandardMaterial3D::-1::1650998845::0::1::::<><>::
-LightMetal.material::StandardMaterial3D::-1::1650998845::0::1::::<><>::
-Robo.material::StandardMaterial3D::-1::1650998844::0::1::::<><>::
-roboPlayer_Cube.tres::ArrayMesh::-1::1650998957::0::1::::<><>::res://BlenderFiles/roboPlayer/Robo.material<>res://BlenderFiles/roboPlayer/Screen.material<>res://BlenderFiles/roboPlayer/Laser.material<>res://BlenderFiles/roboPlayer/LegMetal.material<>res://BlenderFiles/roboPlayer/LightMetal.material<>res://BlenderFiles/roboPlayer/WhiteJoint.material<>res://BlenderFiles/roboPlayer/Wheel.material
-Screen.material::StandardMaterial3D::-1::1650998844::0::1::::<><>::
-Wheel.material::StandardMaterial3D::-1::1650998846::0::1::::<><>::
-WhiteJoint.material::StandardMaterial3D::-1::1650998845::0::1::::<><>::
-::res://Fonts/::1678402648
-digital-7 (italic).ttf::FontFile::3140833920059682030::1651014550::1678402648::1::::<><>::
-digital-7 (mono italic).ttf::FontFile::1231906209482730525::1651014550::1678402648::1::::<><>::
-digital-7 (mono).ttf::FontFile::1035951367439129511::1651014550::1678402648::1::::<><>::
-digital-7.ttf::FontFile::8513969281627907656::1651014550::1678402648::1::::<><>::
-::res://Scenes/::1651082741
-Checkpoint.tscn::PackedScene::-1::1678402633::0::1::::<><>::res://Scripts/Checkpoint.gd<>res://Scenes/CircleMesh.tres
-CircleMesh.tres::SphereMesh::-1::1678402633::0::1::::<><>::
-GLTFrobo.tscn::PackedScene::-1::1651082428::0::1::::<><>::res://BlenderFiles/Robo.material<>res://BlenderFiles/Laser.material<>res://BlenderFiles/WhiteJoint.material<>res://BlenderFiles/Wheel.material<>res://BlenderFiles/LegMetal.material<>res://BlenderFiles/Screen.material<>res://BlenderFiles/LightMetal.material
-OBJrobo.tscn::PackedScene::-1::1678402633::0::1::::<><>::res://BlenderFiles/roboPlayer_000001.obj
-Player.tscn::PackedScene::-1::1678402633::0::1::::<><>::res://Scripts/Player.gd<>res://Scenes/Robo.tscn
-Robo.tscn::PackedScene::-1::1678402633::0::1::::<><>::res://BlenderFiles/roboPlayer/roboPlayer_Cube.tres
-::res://Scenes/Levels/::1678403537
-Level1.tscn::PackedScene::6829867337358334806::1678403537::0::1::::<><>::res://Scenes/Checkpoint.tscn<>res://Scenes/Player.tscn<>res://Scripts/Viewport.gd<>res://Scripts/UI.gd<>res://Scripts/Viewport1.gd<>res://Scenes/GLTFrobo.tscn<>res://Scenes/OBJrobo.tscn
-Level2.tscn::PackedScene::-1::1678402633::0::1::::<><>::res://Scenes/Player.tscn<>res://Fonts/digital-7 (mono).ttf<>res://Scripts/UI.gd<>res://Scenes/Checkpoint.tscn
-Level3.tscn::PackedScene::-1::1678402633::0::1::::<><>::res://Fonts/digital-7 (mono).ttf<>res://Scenes/Checkpoint.tscn<>res://Scenes/Player.tscn<>res://Scripts/UI.gd
-LevelPrototype.tscn::PackedScene::-1::1678402633::0::1::::<><>::res://Fonts/digital-7 (mono).ttf<>res://Scenes/Checkpoint.tscn<>res://Scenes/Player.tscn<>res://Scripts/UI.gd
-::res://Scripts/::1678403537
-Checkpoint.gd::GDScript::-1::1678402633::0::1::::<>Area3D<>::
-Player.gd::GDScript::-1::1678403537::0::1::::<>CharacterBody3D<>::
-UI.gd::GDScript::-1::1678403014::0::1::::<>Control<>::
-Viewport1.gd::GDScript::-1::1678402633::0::1::::<>SubViewport<>::
-Viewport.gd::GDScript::-1::1678402633::0::1::::<>SubViewport<>::
+::res://::1678468677
+default_env.tres::Environment::4819347569625180163::1678468617::0::1::::<><>::
+icon.png::CompressedTexture2D::4188971289166344791::1678468617::1678468617::1::::<><>::
+README.md::TextFile::-1::1678468617::0::1::::<><>::
+ShapeKeyTest.gd::GDScript::-1::1678468617::0::1::::<>MeshInstance3D<>::
+test.tscn::PackedScene::4168266080632093936::1678468617::0::1::::<><>::uid://bbpvp7ptks060<>res://ShapeKeyTest.gd
+::res://BlenderFiles/::1678468617
+Laser.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+LegMetal.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+LightMetal.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+Robo.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+roboPlayer2.gltf::PackedScene::2488878742195343979::1678468616::1678468679::1::::<><>::
+roboPlayer.glb::PackedScene::3050411012226319220::1678468616::1678468616::1::::<><>::
+roboPlayer.gltf::PackedScene::4201457912716643582::1678468616::1678468679::1::::<><>::
+roboPlayer_000001.obj::Mesh::6005734468943300156::1678468617::1678468678::1::::<><>::
+Screen.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+Wheel.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+WhiteJoint.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+::res://BlenderFiles/roboPlayer/::1678468616
+Laser.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+LegMetal.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+LightMetal.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+Robo.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+roboPlayer_Cube.tres::ArrayMesh::-1::1678468616::0::1::::<><>::res://BlenderFiles/roboPlayer/Robo.material<>res://BlenderFiles/roboPlayer/Screen.material<>res://BlenderFiles/roboPlayer/Laser.material<>res://BlenderFiles/roboPlayer/LegMetal.material<>res://BlenderFiles/roboPlayer/LightMetal.material<>res://BlenderFiles/roboPlayer/WhiteJoint.material<>res://BlenderFiles/roboPlayer/Wheel.material
+Screen.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+Wheel.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+WhiteJoint.material::StandardMaterial3D::-1::1678468616::0::1::::<><>::
+::res://Fonts/::1678468617
+digital-7 (italic).ttf::FontFile::3140833920059682030::1678468617::1678468617::1::::<><>::
+digital-7 (mono italic).ttf::FontFile::1231906209482730525::1678468617::1678468617::1::::<><>::
+digital-7 (mono).ttf::FontFile::1035951367439129511::1678468617::1678468617::1::::<><>::
+digital-7.ttf::FontFile::8513969281627907656::1678468617::1678468617::1::::<><>::
+::res://Scenes/::1678468617
+Checkpoint.tscn::PackedScene::-1::1678468617::0::1::::<><>::res://Scripts/Checkpoint.gd<>res://Scenes/CircleMesh.tres
+CircleMesh.tres::SphereMesh::-1::1678468617::0::1::::<><>::
+GLTFrobo.tscn::PackedScene::-1::1678468617::0::1::::<><>::res://BlenderFiles/Robo.material<>res://BlenderFiles/Laser.material<>res://BlenderFiles/WhiteJoint.material<>res://BlenderFiles/Wheel.material<>res://BlenderFiles/LegMetal.material<>res://BlenderFiles/Screen.material<>res://BlenderFiles/LightMetal.material
+OBJrobo.tscn::PackedScene::4480856115884521846::1678468617::0::1::::<><>::uid://crthtmb8tcidw
+Player.tscn::PackedScene::6544451042644763401::1678468617::0::1::::<><>::res://Scripts/Player.gd
+Robo.tscn::PackedScene::4165728954478144472::1678468617::0::1::::<><>::res://BlenderFiles/roboPlayer/roboPlayer_Cube.tres
+::res://Scenes/Levels/::1678468617
+Level1.tscn::PackedScene::6829867337358334806::1678468617::0::1::::<><>::res://Scenes/Checkpoint.tscn<>uid://c0igfgkq0qa8x<>res://Scripts/UI.gd
+Level2.tscn::PackedScene::-1::1678468617::0::1::::<><>::res://Scenes/Player.tscn<>res://Fonts/digital-7 (mono).ttf<>res://Scripts/UI.gd<>res://Scenes/Checkpoint.tscn
+Level3.tscn::PackedScene::-1::1678468617::0::1::::<><>::res://Fonts/digital-7 (mono).ttf<>res://Scenes/Checkpoint.tscn<>res://Scenes/Player.tscn<>res://Scripts/UI.gd
+LevelPrototype.tscn::PackedScene::-1::1678468617::0::1::::<><>::res://Fonts/digital-7 (mono).ttf<>res://Scenes/Checkpoint.tscn<>res://Scenes/Player.tscn<>res://Scripts/UI.gd
+::res://Scripts/::1678468617
+Checkpoint.gd::GDScript::-1::1678468617::0::1::::<>Area3D<>::
+Player.gd::GDScript::-1::1678468617::0::1::::<>CharacterBody3D<>::
+UI.gd::GDScript::-1::1678468617::0::1::::<>Control<>::
+Viewport1.gd::GDScript::-1::1678468617::0::1::::<>SubViewport<>::
+Viewport.gd::GDScript::-1::1678468617::0::1::::<>SubViewport<>::

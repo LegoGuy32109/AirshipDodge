@@ -1,52 +1,44 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://dvm2103jkd3cj"]
 
-[ext_resource path="res://Scripts/Checkpoint.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/CircleMesh.tres" type="SphereMesh" id=2]
+[ext_resource type="Script" path="res://Scripts/Checkpoint.gd" id="1"]
+[ext_resource type="SphereMesh" uid="uid://b5s6sghhi1rr6" path="res://Scenes/CircleMesh.tres" id="2"]
 
-[sub_resource type="SphereShape3D" id=15]
-radius = 1.75186
+[sub_resource type="SphereShape3D" id="15"]
+radius = 4.0
 
-[sub_resource type="StandardMaterial3D" id=18]
-flags_transparent = true
-albedo_color = Color( 0.0823529, 0.760784, 0.964706, 0.478431 )
+[sub_resource type="StandardMaterial3D" id="18"]
+transparency = 1
+albedo_color = Color(0.0823529, 0.760784, 0.964706, 0.478431)
 
-[sub_resource type="StandardMaterial3D" id=17]
-flags_transparent = true
-albedo_color = Color( 0.364706, 1, 0.505882, 0.607843 )
+[sub_resource type="StandardMaterial3D" id="20"]
+albedo_color = Color(0.309804, 0.666667, 0.980392, 1)
 
-[sub_resource type="StandardMaterial3D" id=20]
-albedo_color = Color( 0.309804, 0.666667, 0.980392, 1 )
-
-[sub_resource type="BoxMesh" id=19]
-material = SubResource( 20 )
-size = Vector3( 0.1, 0.1, 0.1 )
+[sub_resource type="BoxMesh" id="19"]
+material = SubResource("20")
+size = Vector3(0.4, 0.4, 0.4)
 
 [node name="Checkpoint" type="Area3D"]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource( 15 )
+shape = SubResource("15")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D( 1.41112, 0, 0, 0, 1.41112, 0, 0, 0, 1.41112, 0, 0, 0 )
-material_override = SubResource( 18 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 17 )
+transform = Transform3D(1.41112, 0, 0, 0, 1.41112, 0, 0, 0, 1.41112, 0, 0, 0)
+material_override = SubResource("18")
+mesh = ExtResource("2")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.100649 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.100649)
 amount = 12
 lifetime = 0.49
-mesh = SubResource( 19 )
+mesh = SubResource("19")
 emission_shape = 1
-emission_sphere_radius = 1.25
-direction = Vector3( 0, 0, 0 )
+emission_sphere_radius = 4.0
+direction = Vector3(0, 0, 0)
 spread = 180.0
-gravity = Vector3( 0, -4, 0 )
-initial_velocity = 0.43
-initial_velocity_random = 0.23
-radial_accel = 4.1
+gravity = Vector3(0, -4, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_Checkpoint1_body_entered"]
