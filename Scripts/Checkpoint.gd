@@ -1,4 +1,4 @@
-extends Area
+extends Area3D
 
 var is_next = false
 
@@ -11,7 +11,7 @@ func _on_Checkpoint1_body_entered(body):
 	
 func _process(delta):
 	if is_next:
-		$MeshInstance.material_override = null
+		$MeshInstance3D.material_override = null
 	elif(get_parent().get_children()[0] == self):
 		is_next = true
 		print(self.name, " is the top checkpoint")

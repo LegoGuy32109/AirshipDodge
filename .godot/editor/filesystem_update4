@@ -1,0 +1,9 @@
+res://default_env.tres
+res://Scenes/Levels/Level1.tscn
+res://Scripts/Player.gd
+res://Scripts/UI.gd
+res://test.tscn
+res://Scenes/Player.tscn
+res://Scenes/OBJrobo.tscn
+res://ShapeKeyTest.gd
+res://Scenes/Robo.tscn

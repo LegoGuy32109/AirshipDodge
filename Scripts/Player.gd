@@ -1,18 +1,18 @@
-extends KinematicBody
+extends CharacterBody3D
 
-export var gravity = Vector3.DOWN * 50
+@export var gravity = Vector3.DOWN * 50
 
-export var anim_speed = 12
+@export var anim_speed = 12
 
-export var speed = 1.5
-export var max_speed = 4
+@export var speed = 1.5
+@export var max_speed = 4
 var og_speed = speed
 
-export var slide_speed = 4
+@export var slide_speed = 4
 
-export var jump_speed = 16
+@export var jump_speed = 16
 
-var velocity = Vector3.ZERO
+var my_velocity = Vector3.ZERO
 
 var sliding = false
 var jumping = false
@@ -25,8 +25,8 @@ var totalTime = 0.0
 var isRacing = false
 var timeString = '00:00:00'
 
-onready var UI = get_parent().find_node('UI')
-onready var robo = get_node('Robo')
+@onready var UI = get_parent().find_child('UI')
+@onready var robo = get_node('Robo')
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
@@ -34,7 +34,7 @@ func _init():
 
 func _input(event):         
 	if event is InputEventMouseMotion:
-		self.rotate_y(deg2rad(-event.relative.x*mouse_sens))
+		self.rotate_y(deg_to_rad(-event.relative.x*mouse_sens))
 		
 			
 func timer(delta):
@@ -45,20 +45,23 @@ func timer(delta):
 
 func _physics_process(delta):
 	timer(delta)
-	velocity += gravity * delta
+	my_velocity += gravity * delta
 	get_input(delta) # for user input, WASD controls
-	velocity = move_and_slide(velocity, Vector3.UP) # second input labels ground 
+	set_velocity(my_velocity)
+	set_up_direction(Vector3.UP)
+	move_and_slide()
+	my_velocity = my_velocity # second input labels ground 
 	
 	# UI
-	UI.find_node('ProgressBar').set('value', sliding_percent)
-	UI.find_node('TimerLabel').set('text', timeString)
+	UI.find_child('ProgressBar').set('value', sliding_percent)
+	UI.find_child('TimerLabel').set('text', timeString)
 	# Collisions
-	for i in get_slide_count():
+	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.name == "KillPlane":
-			resetLevel() # restart level
+#		if collision.collider.name == "KillPlane":
+#			resetLevel() # restart level
 
-	# Animations (Shape Keys)
+	# Animations (Shape3D Keys)
 	roboAnim(delta)
 			
 			
@@ -97,13 +100,13 @@ func get_input(delta):
 	
 	# movment controls
 	if Input.is_action_pressed("forward"):
-		velocity += -transform.basis.z * speed
+		my_velocity += -transform.basis.z * speed
 	if Input.is_action_pressed("backward"):
-		velocity += transform.basis.z * speed
+		my_velocity += transform.basis.z * speed
 	if Input.is_action_pressed("right"):
-		velocity += transform.basis.x * speed
+		my_velocity += transform.basis.x * speed
 	if Input.is_action_pressed("left"):
-		velocity += -transform.basis.x * speed
+		my_velocity += -transform.basis.x * speed
 	
 	if (Input.is_action_pressed("backward") or Input.is_action_pressed("forward") or Input.is_action_pressed("right") or Input.is_action_pressed("left")) and is_on_floor():
 		speed += delta
@@ -113,7 +116,7 @@ func get_input(delta):
 	
 	# jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity += Vector3.UP * jump_speed
+		my_velocity += Vector3.UP * jump_speed
 
 	# charge up slide
 	if Input.is_action_pressed("jump") and not is_on_floor():
@@ -135,7 +138,7 @@ func get_input(delta):
 	if sliding:
 		if sliding_percent == 0:
 			sliding = false
-		velocity += -transform.basis.z * sliding_percent * slide_speed
+		my_velocity += -transform.basis.z * sliding_percent * slide_speed
 		sliding_percent -= delta 
 		sliding_percent = max(0, sliding_percent)
 	
@@ -144,13 +147,13 @@ func get_input(delta):
 	if sliding:
 		dampFactor = 30
 	
-	if abs(velocity.x) > 0:
-		velocity.x -= velocity.x/dampFactor
-		if abs(velocity.x) < .07:
-			velocity.x = 0
-	if abs(velocity.z) > 0:
-		velocity.z -= velocity.z/dampFactor
-		if abs(velocity.z) < .07:
-			velocity.z = 0
+	if abs(my_velocity.x) > 0:
+		my_velocity.x -= my_velocity.x/dampFactor
+		if abs(my_velocity.x) < .07:
+			my_velocity.x = 0
+	if abs(my_velocity.z) > 0:
+		my_velocity.z -= my_velocity.z/dampFactor
+		if abs(my_velocity.z) < .07:
+			my_velocity.z = 0
 
 
