@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4ko6gjii8bte"]
+[gd_scene load_steps=14 format=3 uid="uid://c4ko6gjii8bte"]
 
 [ext_resource type="PackedScene" uid="uid://dvm2103jkd3cj" path="res://Scenes/Checkpoint.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c0igfgkq0qa8x" path="res://Scenes/Player.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://bjpv3agy7ogsi" path="res://BlenderFiles/roboPlayer.glb" id="4_ewum2"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://b04hnscjmadxe" path="res://BlenderFiles/roboPlayer.gltf" id="5_ccr8i"]
 
 [sub_resource type="BoxShape3D" id="4"]
 size = Vector3(6.19853, 0.099379, 5.71876)
@@ -17,7 +19,7 @@ material = SubResource("17")
 size = Vector3(1, 7, 1)
 
 [sub_resource type="BoxShape3D" id="10"]
-size = Vector3(526.02, 0.162008, 447.079)
+size = Vector3(200, 1, 200)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1cdl6"]
 
@@ -148,4 +150,11 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uei8d")
 
+[node name="roboPlayer" parent="." instance=ExtResource("4_ewum2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.28781, 2.22454, 0)
+
+[node name="roboPlayer2" parent="." instance=ExtResource("5_ccr8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.27666, 2.45872, 0)
+
 [editable path="Player"]
+[editable path="Player/roboPlayer2"]

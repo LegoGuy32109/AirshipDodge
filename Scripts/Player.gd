@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var gravity = Vector3.DOWN * 50
+@export var gravity = Vector3.DOWN * 10
 
 @export var anim_speed = 12
 
@@ -26,7 +26,7 @@ var isRacing = false
 var timeString = '00:00:00'
 
 @onready var UI = get_parent().find_child('UI')
-@onready var robo = get_node('Robo')
+@onready var robo = get_node('roboPlayer2/Armature/Robo')
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
@@ -57,9 +57,9 @@ func _physics_process(delta):
 	UI.find_child('TimerLabel').set('text', timeString)
 	# Collisions
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-#		if collision.collider.name == "KillPlane":
-#			resetLevel() # restart level
+		var collision_name = get_slide_collision(i).get_collider().name
+		if collision_name == "KillPlane":
+			resetLevel() # restart level
 
 	# Animations (Shape3D Keys)
 	roboAnim(delta)
@@ -85,8 +85,7 @@ func resetLevel():
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
-	# tell player OOF
-		
+
 func get_input(delta):
 	# restart
 	if Input.is_action_just_pressed("restart"):

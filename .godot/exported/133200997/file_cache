@@ -1,0 +1,10 @@
+res://BlenderFiles/roboPlayer/roboPlayer_Cube.tres::8206771b5a3a88ca2c6d86d699430a30::1678468616::res://.godot/exported/133200997/export-f2c7f4afd7c147ecff11aeed5d740319-roboPlayer_Cube.res
+res://Scenes/Levels/Level1.tscn::7243792f5a2a0794d8c022c441dbf20e::1678474285::res://.godot/exported/133200997/export-25e2e42a0b4c24c028143b59a0da7b5f-Level1.scn
+res://Scenes/Levels/Level2.tscn::0eeccfb1e4c2de0335329e240e579652::1678468617::res://.godot/exported/133200997/export-464c93198fde5af327527d5734cf2d43-Level2.scn
+res://Scenes/Levels/Level3.tscn::bac939b1c53f4cda031297a517a84a7a::1678468617::res://.godot/exported/133200997/export-819818f3d48364df72c3a1cee4b09dae-Level3.scn
+res://Scenes/Levels/LevelPrototype.tscn::94c270d2ac84f0ddbf6aa92ff9a7af74::1678468617::res://.godot/exported/133200997/export-db5f866b909f5692596322a0b836c114-LevelPrototype.scn
+res://Scenes/Checkpoint.tscn::7f8daa018cba8a50dd6ec7435e312872::1678474285::res://.godot/exported/133200997/export-4c5580a9f4c99794b1c49f08c9a92767-Checkpoint.scn
+res://Scenes/CircleMesh.tres::4425707e56ba1243660fd1fd1cc225dc::1678469717::res://.godot/exported/133200997/export-5dde762950773094d3ab73ab227096e8-CircleMesh.res
+res://Scenes/Player.tscn::bb3c2560441752dcb3772412be21dfb6::1678474285::res://.godot/exported/133200997/export-a7209d3b864edc0146622aad500fa2c1-Player.scn
+res://default_env.tres::9be8f802bca2223508639a2a368d0051::1678474285::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://test.tscn::e1ba99202d16dbe5c3d6c6855286f4c6::1678474285::res://.godot/exported/133200997/export-f0a4ea32b72b64218d23e48a955cbc61-test.scn

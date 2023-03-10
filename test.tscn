@@ -12,9 +12,6 @@
 [node name="Robo" parent="roboPlayer2/Armature" index="0"]
 script = ExtResource("2_vcbhj")
 
-[node name="Body" parent="roboPlayer2/Armature" index="1"]
-visible = false
-
 [node name="BackLegL" parent="roboPlayer2/Armature/Body/UpperLegL" index="1"]
 transform = Transform3D(1, -7.75282e-08, 7.67032e-08, 9.32782e-08, 0.972427, -0.233206, -5.65082e-08, 0.233206, 0.972427, 0, 0.652756, -1.49012e-08)
 

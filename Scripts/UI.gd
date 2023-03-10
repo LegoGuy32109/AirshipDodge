@@ -6,7 +6,7 @@ var time_to_next_level = 2
 @onready var nextLevel = "res://Scenes/Levels/Level"+str(currentLevelNum+1)+".tscn"
 
 func _ready():
-	print(currentLevel, nextLevel) # I know what I'm teleporting too
+#	print(currentLevel, nextLevel) # I know what I'm teleporting too
 	$WinText.visible = false
 
 func _process(delta):
